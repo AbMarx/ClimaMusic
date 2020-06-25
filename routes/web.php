@@ -11,7 +11,5 @@
 |
 */
 
-
-
-$router->get('wheater/{city}', 'weatherConsultationsController@getMusicSuggestion');
+$router->get('weather/{city}', 'weatherConsultationsController@getMusicSuggestion');
 $router->get('statistics', 'weatherConsultationsController@getStatistics');

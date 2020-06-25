@@ -72,9 +72,9 @@ class weatherConsultationsController extends Controller
     public function getWeatherByCityName(){
         if(isset($this->weather_key,$this->weather_endpoint,$this->city)){
             $this->weather_endpoint = str_replace("{city}",$this->city,$this->weather_endpoint);
-            $this->weather_endpoint = str_replace("{weather_key}",$weather_key,$this->weather_endpoint);
+            $this->weather_endpoint = str_replace("{weather_key}",$this->weather_key,$this->weather_endpoint);
 
-            $curlData = $this->getCurlResponse($weather_endpoint,false,false);
+            $curlData = $this->getCurlResponse($this->weather_endpoint,false,false);
 
             if($curlData->main->temp){
                 $this->city_temp = $curlData->main->temp;
