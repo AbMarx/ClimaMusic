@@ -31,7 +31,7 @@
             <a href="#" data-language-name="python">python</a>
          </div>
          <div class="search">
-            <input type="text" class="search" id="input-search" placeholder="Search">
+            <input type="text" class="search" id="input-search" placeholder="Buscar">
          </div>
          <ul class="search-results"></ul>
          <div id="toc">
@@ -46,7 +46,14 @@
             <h1>Introdução a API Clima Music</h1>
             <p style="font-size:18px">
                 O objetivo desta documentação é orientar o desenvolvedor sobre como integrar com o API do Clima Music, API que irá disponibilizar músicas de acordo com a temperatura de uma cidade e gerador de métricas das requisições, descrevendo os serviços disponíveis com exemplos de requisição e respostas.
-                <br/><br/>Todas as operações requerem credenciais de acesso (Client ID e Client Secret) específicos para respectivos para comunicação com a API Spotify e key para a API externa <a href="https://openweathermap.org/api" target="new"><b>OpenWeatherMaps</b></a>:
+                <br/><br/>Todas as operações requerem credenciais de acesso (Client ID e Client Secret) específicos para respectivos para comunicação com a <a href="https://developer.spotify.com/documentation/web-api/"><b>API Spotify</b></a> e key para a API externa <a href="https://openweathermap.org/api" target="new"><b>OpenWeatherMaps</b></a>:<br/><br/>
+
+                <b>Arquitetura</b><br/><br/>
+
+                A integração é realizada através de serviços disponibilizados como Web Services. 
+                O modelo utilizado é bem simples e fácil de ser utilizado, leia abaixo as especificações dos endpoints disponíveis nesta API que são comunicáveis através do protocolo HTTP.<br/><br/> 
+
+                <b>GET</b> - O método HTTP GET é utilizado para consultas de recursos já existentes. Por exemplo, músicas com base na temperatura da cidade e estatísticas das requsições já realizadas.<br/>
             </p>
             <!-- END_INFO -->
             <h1>general</h1>
