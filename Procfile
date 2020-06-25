@@ -1,1 +1,1 @@
-web: vendor/bin/heroku-php-nginx clima_music/public/
+web: vendor/bin/heroku-php-nginx public/
