@@ -12,4 +12,4 @@
 */
 
 $router->get('weather/{city}', 'weatherConsultationsController@getMusicSuggestion');
-$router->get('statistics', 'weatherConsultationsController@getStatistics');
+$router->get('statistics', 'weatherConsultationsController@getCityMetrics');

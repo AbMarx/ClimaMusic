@@ -21,6 +21,7 @@ class weatherConsultationsController extends Controller
     private $cliente_secret;
     private $weather_key;
     private $weather_endpoint;
+    private $city_metrics;
 
     public function __construct()
     { 
@@ -31,7 +32,7 @@ class weatherConsultationsController extends Controller
         $this->weather_key = env("WEATHER_KEY", null);
         $this->weather_endpoint = env("WEATHER_ENDPOINT", null);
         $this->token = $this->getSpotifyToken();
-
+        $this->city_metrics = Cache::get('city_metrics');          
         $this->weatherConsultations = new weatherConsultations();
     }
 
@@ -39,20 +40,15 @@ class weatherConsultationsController extends Controller
         if(isset($request->city)){
             $this->city = $request->city;
             
-            $this->getWeatherByCityName();
-            $this->getMusicByTemperature();
-
-            if(count($this->musics) > 0){
-                if($this->storeWeatherConsultations()){
+            if($this->getWeatherByCityName()){
+                if($this->getMusicByTemperature()){
+                    $this->setCityMetrics();
                     return json_encode($this->musics);
                 }
                 else{
-                    return $this->makeErrorReturn("3","Falha em operação de banco de dados","Erro ao gravar a sua solicitação em nossa base de dados.");
+                    return $this->makeErrorReturn("2","Response vazio ou nulo","Nenhuma música encontrada.");
                 }
-            }
-            else{
-                return $this->makeErrorReturn("2","Response vazio ou nulo","Nenhuma música encontrada.");
-            }
+            }            
         }
         else{
             return $this->makeErrorReturn("1","Parâmetros requeridos não fornecidos","O parâmetro nome da cidade não fornecido.");
@@ -77,7 +73,12 @@ class weatherConsultationsController extends Controller
             $curlData = $this->getCurlResponse($this->weather_endpoint,false,false);
 
             if($curlData->main->temp){
-                $this->city_temp = $curlData->main->temp;
+                if(isset($curlData->main->temp)){
+                    $this->city_temp = $curlData->main->temp;
+
+                    return true;
+                }
+                return false;
             }
             else{
                 return $this->makeErrorReturn("4","Erro na obtenção de dados externos","Erro ao adquirir a temperatura da cidade $this->city.");
@@ -96,6 +97,8 @@ class weatherConsultationsController extends Controller
                 foreach($curlData->tracks as $recommendation){
                     array_push($this->musics,$recommendation->name);
                 }
+
+                return true;
             } 
             else{
                 return $this->makeErrorReturn("4","Erro na obtenção de dados externos","Erro ao adquirir as músicas de acordo com a temperatura da cidade $this->city");
@@ -115,20 +118,43 @@ class weatherConsultationsController extends Controller
         }
     }
 
-    public function storeWeatherConsultations(){
-        $this->weatherConsultations->city = urldecode($this->city);
-        $this->weatherConsultations->key_consultation = $this->client_id;
-        $this->weatherConsultations->city_temperature = $this->city_temp;
-        $this->weatherConsultations->music_genre = $this->music_genre;
-        $this->weatherConsultations->created_at = time();
-        $this->weatherConsultations->updated_at = time();
+    public function setCityMetrics(){
+        if(isset($this->city)){
+            if(is_array($this->city_metrics)){
+                if(!in_array($this->city,$this->city_metrics)){
+                    array_push($this->city_metrics,urldecode($this->city));
+                    Cache::forever('city_metrics', $this->city_metrics);
+                } 
+            }   
+            else{
+                $this->city_metrics = array();
 
-        if($this->weatherConsultations->save()){
-            return true;
+                array_push($this->city_metrics,urldecode($this->city));
+                Cache::forever('city_metrics', $this->city_metrics);
+            }
         }
 
         return false;
     }
+
+    public function getCityMetrics(){
+        return json_encode($this->city_metrics);
+    }
+
+    // public function storeWeatherConsultations(){
+    //     $this->weatherConsultations->city = urldecode($this->city);
+    //     $this->weatherConsultations->key_consultation = $this->client_id;
+    //     $this->weatherConsultations->city_temperature = $this->city_temp;
+    //     $this->weatherConsultations->music_genre = $this->music_genre;
+    //     $this->weatherConsultations->created_at = time();
+    //     $this->weatherConsultations->updated_at = time();
+
+    //     if($this->weatherConsultations->save()){
+    //         return true;
+    //     }
+
+    //     return false;
+    // }
     
     public function getSpotifyToken(){
         $client = new \GuzzleHttp\Client();
@@ -195,43 +221,43 @@ class weatherConsultationsController extends Controller
         }
     }
 
-    public function getStatistics(){
-        if(Cache::has('statistics')) {
-            $statistics = Cache::store('file')->get('statistics');
-            return json_encode($statistics);
-        }
+    // public function getStatistics(){
+    //     if(Cache::has('statistics')) {
+    //         $statistics = Cache::store('file')->get('statistics');
+    //         return json_encode($statistics);
+    //     }
 
-        $totalConsultsByCity = $this->execDbSelect("SELECT DISTINCT wc.city, COUNT(wc.city) AS total_consultations FROM weather_consultations AS wc GROUP BY wc.city ORDER BY total_consultations DESC");
-        $mostHotestCity = $this->execDbSelect("SELECT city, MAX(wc.city_temperature) AS city_temperature FROM weather_consultations AS wc GROUP BY city ORDER BY city_temperature DESC LIMIT 1");
-        $mostColdestCity = $this->execDbSelect("SELECT city, MIN(wc.city_temperature) AS city_temperature FROM weather_consultations AS wc GROUP BY city ORDER BY city_temperature ASC LIMIT 1");
-        $musicGenresByCity = $this->execDbSelect("SELECT DISTINCT city, GROUP_CONCAT(DISTINCT music_genre) AS music_genres FROM `weather_consultations` GROUP BY city");
+    //     $totalConsultsByCity = $this->execDbSelect("SELECT DISTINCT wc.city, COUNT(wc.city) AS total_consultations FROM weather_consultations AS wc GROUP BY wc.city ORDER BY total_consultations DESC");
+    //     $mostHotestCity = $this->execDbSelect("SELECT city, MAX(wc.city_temperature) AS city_temperature FROM weather_consultations AS wc GROUP BY city ORDER BY city_temperature DESC LIMIT 1");
+    //     $mostColdestCity = $this->execDbSelect("SELECT city, MIN(wc.city_temperature) AS city_temperature FROM weather_consultations AS wc GROUP BY city ORDER BY city_temperature ASC LIMIT 1");
+    //     $musicGenresByCity = $this->execDbSelect("SELECT DISTINCT city, GROUP_CONCAT(DISTINCT music_genre) AS music_genres FROM `weather_consultations` GROUP BY city");
 
-        if($musicGenresByCity){
-            foreach($musicGenresByCity as $city){
-                $city->music_genres = explode(",",$city->music_genres);
-            }    
+    //     if($musicGenresByCity){
+    //         foreach($musicGenresByCity as $city){
+    //             $city->music_genres = explode(",",$city->music_genres);
+    //         }    
             
-            $musicGenresByCity = $musicGenresByCity;
-        }
+    //         $musicGenresByCity = $musicGenresByCity;
+    //     }
 
-        $totalMusicGenreByCity = $this->execDbSelect("SELECT city ,music_genre, COUNT(music_genre) AS total_music_genre FROM weather_consultations GROUP BY music_genre,city");
-        $totalMusicGenre = $this->execDbSelect("SELECT music_genre, COUNT(music_genre) AS total_music_genre FROM weather_consultations GROUP BY music_genre");
+    //     $totalMusicGenreByCity = $this->execDbSelect("SELECT city ,music_genre, COUNT(music_genre) AS total_music_genre FROM weather_consultations GROUP BY music_genre,city");
+    //     $totalMusicGenre = $this->execDbSelect("SELECT music_genre, COUNT(music_genre) AS total_music_genre FROM weather_consultations GROUP BY music_genre");
 
-        if(!Cache::has('statistics')) {
-            $statistics = [
-                "totalConsultsByCity"=>$totalConsultsByCity,
-                "mostHotestCity"=>$mostHotestCity,
-                "mostColdestCity"=>$mostColdestCity,
-                "musicGenresByCity"=>$musicGenresByCity,
-                "totalMusicGenreByCity"=>$totalMusicGenreByCity,
-                "totalMusicGenre"=>$totalMusicGenre
-            ];
-            Cache::put('statistics', $statistics, 600);
-            $statistics = Cache::store('file')->get('statistics');
-        }      
+    //     if(!Cache::has('statistics')) {
+    //         $statistics = [
+    //             "totalConsultsByCity"=>$totalConsultsByCity,
+    //             "mostHotestCity"=>$mostHotestCity,
+    //             "mostColdestCity"=>$mostColdestCity,
+    //             "musicGenresByCity"=>$musicGenresByCity,
+    //             "totalMusicGenreByCity"=>$totalMusicGenreByCity,
+    //             "totalMusicGenre"=>$totalMusicGenre
+    //         ];
+    //         Cache::put('statistics', $statistics, 600);
+    //         $statistics = Cache::store('file')->get('statistics');
+    //     }      
     
-        return json_encode($statistics);
-    }
+    //     return json_encode($statistics);
+    // }
 
     public function execDbSelect($sql){
         if(isset($sql)){
