@@ -22,7 +22,6 @@ class weatherConsultationsController extends Controller
     private $weather_key;
     private $weather_endpoint;
     private $city_metrics;
-
     public function __construct()
     { 
         $this->client_id = env("CLIENT_ID", null);
@@ -32,18 +31,22 @@ class weatherConsultationsController extends Controller
         $this->weather_key = env("WEATHER_KEY", null);
         $this->weather_endpoint = env("WEATHER_ENDPOINT", null);
         $this->token = $this->getSpotifyToken();
-        $this->city_metrics = Cache::get('city_metrics');          
+        $this->city_metrics = array();
+        
+        if(Cache::get('city_metrics')){
+            $this->city_metrics =  Cache::get('city_metrics',null);
+        }
         $this->weatherConsultations = new weatherConsultations();
     }
 
     public function getMusicSuggestion(Request $request){
         if(isset($request->city)){
-            $this->city = $request->city;
+            $this->city = rawurldecode($request->city);
             
             if($this->getWeatherByCityName()){
                 if($this->getMusicByTemperature()){
                     $this->setCityMetrics();
-                    return json_encode($this->musics);
+                    return response()->json($this->musics, 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);                    
                 }
                 else{
                     return $this->makeErrorReturn("2","Response vazio ou nulo","Nenhuma música encontrada.");
@@ -120,25 +123,17 @@ class weatherConsultationsController extends Controller
 
     public function setCityMetrics(){
         if(isset($this->city)){
-            if(is_array($this->city_metrics)){
-                if(!in_array($this->city,$this->city_metrics)){
-                    array_push($this->city_metrics,urldecode($this->city));
-                    Cache::forever('city_metrics', $this->city_metrics);
-                } 
-            }   
-            else{
-                $this->city_metrics = array();
-
-                array_push($this->city_metrics,urldecode($this->city));
+            if(!in_array($this->city,$this->city_metrics)){
+                array_push($this->city_metrics,$this->city);
                 Cache::forever('city_metrics', $this->city_metrics);
-            }
+            } 
         }
 
         return false;
     }
 
     public function getCityMetrics(){
-        return json_encode($this->city_metrics);
+        return response()->json($this->city_metrics, 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);
     }
 
     // public function storeWeatherConsultations(){
