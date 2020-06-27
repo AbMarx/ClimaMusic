@@ -1,6 +1,6 @@
 # API REST Clima Music
 
-Introdução a API Clima Music
+<h3>Introdução a API Clima Music</h3>
 
 O objetivo desta documentação é orientar o desenvolvedor sobre como integrar com o API do Clima Music, API que irá disponibilizar músicas de acordo com a temperatura de uma cidade e gerador de métricas das requisições, descrevendo os serviços disponíveis com exemplos de requisição e respostas.
 
