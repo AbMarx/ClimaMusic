@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="pt-br"> 
 <head>
-    <title>CoderDocs - Bootstrap 4 Documentation Template For Software Projects</title>
+    <title>Clima Music - Documentação</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <meta name="description" content="Bootstrap 4 Template For Software Startups">
-    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
-    <link rel="shortcut icon" href="favicon.ico"> 
+    <meta name="description" content="Clima Musica a melhor API REST de sugestões musicais baseadas em clima de cidade !!">
+    <meta name="author" content="Abner Marques de Oliveira">    
+    <link rel="shortcut icon" href="assets/images/favicon.ico"> 
     
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
@@ -42,10 +42,6 @@
                 </div><!--//docs-logo-wrapper-->
 	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
 	                <div class="top-search-box d-none d-lg-flex">
-		                <form class="search-form">
-				            <input type="text" placeholder="Search the docs..." name="search" class="form-control search-input">
-				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
-				        </form>
 	                </div>
 	
 					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
@@ -53,12 +49,107 @@
 			            <li class="list-inline-item"><a href="#"><i class="fab fa-twitter fa-fw"></i></a></li>
 		                <li class="list-inline-item"><a href="#"><i class="fab fa-slack fa-fw"></i></a></li>
 		                <li class="list-inline-item"><a href="#"><i class="fab fa-product-hunt fa-fw"></i></a></li>
-		            </ul><!--//social-list-->
-		            <a href="https://themes.3rdwavemedia.com/bootstrap-templates/startup/coderdocs-free-bootstrap-4-documentation-template-for-software-projects/" class="btn btn-primary d-none d-lg-flex">Download</a>
+					</ul><!--//social-list-->
+		            <a href="" class="btn btn-primary d-none d-lg-flex " data-toggle="modal" data-target="#contactModal">Fale Conosco</a>
 	            </div><!--//docs-top-utilities-->
             </div><!--//container-->
         </div><!--//branding-->
-    </header><!--//header-->
+	</header><!--//header-->
+	
+	<!-- Modal -->
+	<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			</div>
+			<div class="modal-body">
+				<!--Section: Contact v.2-->
+<section class="mb-4">
+
+    <!--Section heading-->
+    <h2 class="h1-responsive font-weight-bold text-center my-4">Fale Conosco</h2>
+    <!--Section description-->
+    <p class="text-center w-responsive mx-auto mb-5">Você tem alguma pergunta? Por favor, não hesite em nos contatar diretamente. Nossa equipe entrará em contato com você em questão de horas para ajudá-lo.</p>
+
+    <div class="row">
+
+        <!--Grid column-->
+        <div class="col-md-12 mb-md-0 mb-5">
+            <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                        <div class="md-form mb-0">
+							<label for="name" class="">Seu nome</label>
+                            <input type="text" id="name" name="name" class="form-control">
+                        </div>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                        <div class="md-form mb-0">
+							<label for="email" class="">Seu e-mail</label>
+                            <input type="text" id="email" name="email" class="form-control">
+                        </div>
+                    </div>
+                    <!--Grid column-->
+
+                </div>
+                <!--Grid row-->
+
+                <!--Grid row-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="md-form mb-0">
+							<label for="subject" class="">Assunto</label>
+                            <input type="text" id="subject" name="subject" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <!--Grid row-->
+
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-md-12">
+
+                        <div class="md-form">
+							<label for="message">Sua mensagem</label>
+                            <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
+                        </div>
+
+                    </div>
+                </div>
+                <!--Grid row-->
+
+            </form>
+
+            <div class="text-center text-md-left">
+                <br/><br/><a class="btn btn-primary" style="color:#FFF;">Enviar</a>
+            </div>
+            <div class="status"></div>
+        </div>
+        <!--Grid column-->
+
+        
+
+    </div>
+
+</section>
+<!--Section: Contact v.2-->
+			</div>
+			
+		</div>
+		</div>
+	</div>
     
     <div class="docs-wrapper">
 	    <div id="docs-sidebar" class="docs-sidebar">
@@ -79,25 +170,7 @@
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-4-2">OpenWeatherMaps API</a></li>
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-4-3">Spotify API</a></li>
 				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-5"><span class="theme-icon-holder mr-2"><i class="fas fa-erros"></i></span>Erros</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-5-1">Section Item 5.1</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-5-2">Section Item 5.2</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-5-3">Section Item 5.3</a></li>
-				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-6"><span class="theme-icon-holder mr-2"><i class="fas fa-laptop-code"></i></span>Web</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-6-1">Section Item 6.1</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-6-2">Section Item 6.2</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-6-3">Section Item 6.3</a></li>
-				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-7"><span class="theme-icon-holder mr-2"><i class="fas fa-tablet-alt"></i></span>Mobile</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-7-1">Section Item 7.1</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-7-2">Section Item 7.2</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-7-3">Section Item 7.3</a></li>
-				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-8"><span class="theme-icon-holder mr-2"><i class="fas fa-book-reader"></i></span>Resources</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-8-1">Section Item 8.1</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-8-2">Section Item 8.2</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-8-3">Section Item 8.3</a></li>
 				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-9"><span class="theme-icon-holder mr-2"><i class="fas fa-lightbulb"></i></span>FAQs</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-9-1">Section Item 9.1</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-9-2">Section Item 9.2</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-9-3">Section Item 9.3</a></li>
 			    </ul>
 
 		    </nav><!--//docs-nav-->
@@ -113,7 +186,7 @@
 
 								Todas as operações requerem credenciais de acesso (Client ID e Client Secret) específicos para respectivos para comunicação com a API Spotify e key para a API externa OpenWeatherMaps, mas não se preocupe, essas credenciais são mantidas e manipuladas do nosso lado.<br/><br/>
 
-								<b style="color: #ff8187;">Arquitetura</b><br/><br/>
+								<b>Arquitetura</b><br/><br/>
 
 								A integração é realizada através de serviços disponibilizados como Web Services. O modelo utilizado é bem simples e fácil de ser utilizado, leia abaixo as especificações dos endpoints disponíveis nesta API que são comunicáveis através do protocolo HTTP.<br/><br/>
 
@@ -214,7 +287,6 @@ print_r(json_decode((string) $body));
 						</pre>
 
 						<b>Exemplo de response: 200</b><br/><br/>
-						<p class="text-danger"><b>O response será padrão JSON independete da linguagem utilizada para realizar a comunicação com a API Musica Clima.</b></p>
 
 						<div class="CodeBlock-pre language-json code_example">
 [<br/>
@@ -241,6 +313,17 @@ print_r(json_decode((string) $body));
 ]
 						</div>
 						</header>
+						<div class="callout-block callout-block-warning">
+                            <div class="content">
+                                <h4 class="callout-title">
+	                                <span class="callout-icon-holder mr-1">
+		                                <svg class="svg-inline--fa fa-bullhorn fa-w-18" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bullhorn" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M576 240c0-23.63-12.95-44.04-32-55.12V32.01C544 23.26 537.02 0 512 0c-7.12 0-14.19 2.38-19.98 7.02l-85.03 68.03C364.28 109.19 310.66 128 256 128H64c-35.35 0-64 28.65-64 64v96c0 35.35 28.65 64 64 64h33.7c-1.39 10.48-2.18 21.14-2.18 32 0 39.77 9.26 77.35 25.56 110.94 5.19 10.69 16.52 17.06 28.4 17.06h74.28c26.05 0 41.69-29.84 25.9-50.56-16.4-21.52-26.15-48.36-26.15-77.44 0-11.11 1.62-21.79 4.41-32H256c54.66 0 108.28 18.81 150.98 52.95l85.03 68.03a32.023 32.023 0 0 0 19.98 7.02c24.92 0 32-22.78 32-32V295.13C563.05 284.04 576 263.63 576 240zm-96 141.42l-33.05-26.44C392.95 311.78 325.12 288 256 288v-96c69.12 0 136.95-23.78 190.95-66.98L480 98.58v282.84z"></path></svg><!-- <i class="fas fa-bullhorn"></i> -->
+		                            </span><!--//icon-holder-->
+	                                Aviso
+	                            </h4>
+                                <p>O response será no padrão JSON independete da linguagem utilizada para realizar a comunicação com a API Musica Clima.</p>
+                            </div><!--//content-->
+                        </div>
 
 						<br/><br/><section class="docs-section" id="item-3-2">
 							<h2 class="section-heading">GET api/statisctics</h2>
@@ -318,7 +401,6 @@ print_r(json_decode((string) $body));
 						</pre>
 
 						<b>Exemplo de response: 200</b><br/><br/>
-						<p class="text-danger"><b>O response será padrão JSON independete da linguagem utilizada para realizar a comunicação com a API Musica Clima.</b></p>
 
 						<div class="CodeBlock-pre language-json code_example">
 [<br/>
@@ -330,8 +412,21 @@ print_r(json_decode((string) $body));
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"São Leopoldo"<br/>
 ]
 						</section><!--//section-->
+
+						<div class="callout-block callout-block-warning">
+                            <div class="content">
+                                <h4 class="callout-title">
+	                                <span class="callout-icon-holder mr-1">
+		                                <svg class="svg-inline--fa fa-bullhorn fa-w-18" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bullhorn" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M576 240c0-23.63-12.95-44.04-32-55.12V32.01C544 23.26 537.02 0 512 0c-7.12 0-14.19 2.38-19.98 7.02l-85.03 68.03C364.28 109.19 310.66 128 256 128H64c-35.35 0-64 28.65-64 64v96c0 35.35 28.65 64 64 64h33.7c-1.39 10.48-2.18 21.14-2.18 32 0 39.77 9.26 77.35 25.56 110.94 5.19 10.69 16.52 17.06 28.4 17.06h74.28c26.05 0 41.69-29.84 25.9-50.56-16.4-21.52-26.15-48.36-26.15-77.44 0-11.11 1.62-21.79 4.41-32H256c54.66 0 108.28 18.81 150.98 52.95l85.03 68.03a32.023 32.023 0 0 0 19.98 7.02c24.92 0 32-22.78 32-32V295.13C563.05 284.04 576 263.63 576 240zm-96 141.42l-33.05-26.44C392.95 311.78 325.12 288 256 288v-96c69.12 0 136.95-23.78 190.95-66.98L480 98.58v282.84z"></path></svg><!-- <i class="fas fa-bullhorn"></i> -->
+		                            </span><!--//icon-holder-->
+	                                Aviso
+	                            </h4>
+                                <p>O response será no padrão JSON independete da linguagem utilizada para realizar a comunicação com a API Musica Clima.</p>
+                            </div><!--//content-->
+                        </div>
 					</article><!--//docs-article-->
-			    </article><!--//docs-article-->
+				</article><!--//docs-article-->
+				
 			    
 			    <article class="docs-article" id="section-4">
 				    <header class="docs-header">
@@ -350,7 +445,7 @@ print_r(json_decode((string) $body));
 					
 					<section class="docs-section" id="item-4-3">
 						<h2 class="section-heading">Spotify API</h2>
-						<p>Com base em princípios REST simples, os pontos de extremidade da API da Web do Spotify retornam metadados JSON sobre artistas, álbuns e faixas diretamente do Catálogo de dados do Spotify.</p>
+						<p>Com base em princípios REST simples, os endpoints da API da Web do Spotify retornam metadados JSON sobre artistas, álbuns e faixas diretamente do Catálogo de dados do Spotify.</p>
 					</section><!--//section-->
 			    </article><!--//docs-article-->
 			    
@@ -362,139 +457,61 @@ print_r(json_decode((string) $body));
 						</section><!--//docs-intro-->
 				    </header>
 				     <section class="docs-section" id="item-5-1">
-						<h2 class="section-heading">Section Item 5.1</h2>
-						<p>Vivamus efficitur fringilla ullamcorper. Cras condimentum condimentum mauris, vitae facilisis leo. Aliquam sagittis purus nisi, at commodo augue convallis id. Sed interdum turpis quis felis bibendum imperdiet. Mauris pellentesque urna eu leo gravida iaculis. In fringilla odio in felis ultricies porttitor. Donec at purus libero. Vestibulum libero orci, commodo nec arcu sit amet, commodo sollicitudin est. Vestibulum ultricies malesuada tempor.</p>
-					</section><!--//section-->
+						<div class="table-responsive my-4">
+							<table class="table table-bordered">
+								<tbody>
+								    <tr>
+									    <th class="theme-bg-light"><b>Código de status</b></a></th>
+										<td class="theme-bg-light"><b>Mensagem de status</b></td>
+										<td class="theme-bg-light"><b>Descrição</b></td>
+									</tr>
+									<tr>
+									      <th>400</th>
+										  <td>Parâmetros requeridos não fornecidos</td>
+										  <td>O parâmetro nome da cidade não fornecido.</td>
+									</tr>
+									
+									<tr>
+									    <th>401</th>
+										<td>Erro na obtenção de dados externos</td>
+										<td>Erro ao obter dados necessários para integrar com a API do Spotify.</td>
+									</tr>
+									
+									<tr>
+									    <th>404</th>
+										<td>Response vazio ou nulo</td>
+										<td>Nenhuma música encontrada.</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>					</section><!--//section-->
 					
-					<section class="docs-section" id="item-5-2">
-						<h2 class="section-heading">Section Item 5.2</h2>
-						<p>Vivamus efficitur fringilla ullamcorper. Cras condimentum condimentum mauris, vitae facilisis leo. Aliquam sagittis purus nisi, at commodo augue convallis id. Sed interdum turpis quis felis bibendum imperdiet. Mauris pellentesque urna eu leo gravida iaculis. In fringilla odio in felis ultricies porttitor. Donec at purus libero. Vestibulum libero orci, commodo nec arcu sit amet, commodo sollicitudin est. Vestibulum ultricies malesuada tempor.</p>
-					</section><!--//section-->
 					
-					<section class="docs-section" id="item-5-3">
-							<h2 class="section-heading">Section Item 5.3</h2>
-						<p>Vivamus efficitur fringilla ullamcorper. Cras condimentum condimentum mauris, vitae facilisis leo. Aliquam sagittis purus nisi, at commodo augue convallis id. Sed interdum turpis quis felis bibendum imperdiet. Mauris pellentesque urna eu leo gravida iaculis. In fringilla odio in felis ultricies porttitor. Donec at purus libero. Vestibulum libero orci, commodo nec arcu sit amet, commodo sollicitudin est. Vestibulum ultricies malesuada tempor.</p>
-					</section><!--//section-->
-			    </article><!--//docs-article-->
-			    
-			    
-		        <article class="docs-article" id="section-6">
-				    <header class="docs-header">
-					    <h1 class="docs-heading">Web</h1>
-					    <section class="docs-intro">
-						    <p>Section intro goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque finibus condimentum nisl id vulputate. Praesent aliquet varius eros interdum suscipit. Donec eu purus sed nibh convallis bibendum quis vitae turpis. Duis vestibulum diam lorem, vitae dapibus nibh facilisis a. Fusce in malesuada odio.</p>
-						</section><!--//docs-intro-->
-				    </header>
-				     <section class="docs-section" id="item-6-1">
-						<h2 class="section-heading">Section Item 6.1</h2>
-						<p>Vivamus efficitur fringilla ullamcorper. Cras condimentum condimentum mauris, vitae facilisis leo. Aliquam sagittis purus nisi, at commodo augue convallis id. Sed interdum turpis quis felis bibendum imperdiet. Mauris pellentesque urna eu leo gravida iaculis. In fringilla odio in felis ultricies porttitor. Donec at purus libero. Vestibulum libero orci, commodo nec arcu sit amet, commodo sollicitudin est. Vestibulum ultricies malesuada tempor.</p>
-					</section><!--//section-->
-					
-					<section class="docs-section" id="item-6-2">
-						<h2 class="section-heading">Section Item 6.2</h2>
-						<p>Vivamus efficitur fringilla ullamcorper. Cras condimentum condimentum mauris, vitae facilisis leo. Aliquam sagittis purus nisi, at commodo augue convallis id. Sed interdum turpis quis felis bibendum imperdiet. Mauris pellentesque urna eu leo gravida iaculis. In fringilla odio in felis ultricies porttitor. Donec at purus libero. Vestibulum libero orci, commodo nec arcu sit amet, commodo sollicitudin est. Vestibulum ultricies malesuada tempor.</p>
-					</section><!--//section-->
-					
-					<section class="docs-section" id="item-6-3">
-							<h2 class="section-heading">Section Item 6.3</h2>
-						<p>Vivamus efficitur fringilla ullamcorper. Cras condimentum condimentum mauris, vitae facilisis leo. Aliquam sagittis purus nisi, at commodo augue convallis id. Sed interdum turpis quis felis bibendum imperdiet. Mauris pellentesque urna eu leo gravida iaculis. In fringilla odio in felis ultricies porttitor. Donec at purus libero. Vestibulum libero orci, commodo nec arcu sit amet, commodo sollicitudin est. Vestibulum ultricies malesuada tempor.</p>
-					</section><!--//section-->
-			    </article><!--//docs-article-->
-			    
-			    
-			    <article class="docs-article" id="section-7">
-				    <header class="docs-header">
-					    <h1 class="docs-heading">Mobile</h1>
-					    <section class="docs-intro">
-						    <p>Section intro goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque finibus condimentum nisl id vulputate. Praesent aliquet varius eros interdum suscipit. Donec eu purus sed nibh convallis bibendum quis vitae turpis. Duis vestibulum diam lorem, vitae dapibus nibh facilisis a. Fusce in malesuada odio.</p>
-						</section><!--//docs-intro-->
-				    </header>
-				     <section class="docs-section" id="item-7-1">
-						<h2 class="section-heading">Section Item 7.1</h2>
-						<p>Vivamus efficitur fringilla ullamcorper. Cras condimentum condimentum mauris, vitae facilisis leo. Aliquam sagittis purus nisi, at commodo augue convallis id. Sed interdum turpis quis felis bibendum imperdiet. Mauris pellentesque urna eu leo gravida iaculis. In fringilla odio in felis ultricies porttitor. Donec at purus libero. Vestibulum libero orci, commodo nec arcu sit amet, commodo sollicitudin est. Vestibulum ultricies malesuada tempor.</p>
-					</section><!--//section-->
-					
-					<section class="docs-section" id="item-7-2">
-						<h2 class="section-heading">Section Item 7.2</h2>
-						<p>Vivamus efficitur fringilla ullamcorper. Cras condimentum condimentum mauris, vitae facilisis leo. Aliquam sagittis purus nisi, at commodo augue convallis id. Sed interdum turpis quis felis bibendum imperdiet. Mauris pellentesque urna eu leo gravida iaculis. In fringilla odio in felis ultricies porttitor. Donec at purus libero. Vestibulum libero orci, commodo nec arcu sit amet, commodo sollicitudin est. Vestibulum ultricies malesuada tempor.</p>
-					</section><!--//section-->
-					
-					<section class="docs-section" id="item-7-3">
-							<h2 class="section-heading">Section Item 7.3</h2>
-						<p>Vivamus efficitur fringilla ullamcorper. Cras condimentum condimentum mauris, vitae facilisis leo. Aliquam sagittis purus nisi, at commodo augue convallis id. Sed interdum turpis quis felis bibendum imperdiet. Mauris pellentesque urna eu leo gravida iaculis. In fringilla odio in felis ultricies porttitor. Donec at purus libero. Vestibulum libero orci, commodo nec arcu sit amet, commodo sollicitudin est. Vestibulum ultricies malesuada tempor.</p>
-					</section><!--//section-->
-			    </article><!--//docs-article-->
-			    
-			    
-			    <article class="docs-article" id="section-8">
-				    <header class="docs-header">
-					    <h1 class="docs-heading">Resources</h1>
-					    <section class="docs-intro">
-						    <p>Section intro goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque finibus condimentum nisl id vulputate. Praesent aliquet varius eros interdum suscipit. Donec eu purus sed nibh convallis bibendum quis vitae turpis. Duis vestibulum diam lorem, vitae dapibus nibh facilisis a. Fusce in malesuada odio.</p>
-						</section><!--//docs-intro-->
-				    </header>
-				     <section class="docs-section" id="item-8-1">
-						<h2 class="section-heading">Section Item 8.1</h2>
-						<p>Vivamus efficitur fringilla ullamcorper. Cras condimentum condimentum mauris, vitae facilisis leo. Aliquam sagittis purus nisi, at commodo augue convallis id. Sed interdum turpis quis felis bibendum imperdiet. Mauris pellentesque urna eu leo gravida iaculis. In fringilla odio in felis ultricies porttitor. Donec at purus libero. Vestibulum libero orci, commodo nec arcu sit amet, commodo sollicitudin est. Vestibulum ultricies malesuada tempor.</p>
-					</section><!--//section-->
-					
-					<section class="docs-section" id="item-8-2">
-						<h2 class="section-heading">Section Item 8.2</h2>
-						<p>Vivamus efficitur fringilla ullamcorper. Cras condimentum condimentum mauris, vitae facilisis leo. Aliquam sagittis purus nisi, at commodo augue convallis id. Sed interdum turpis quis felis bibendum imperdiet. Mauris pellentesque urna eu leo gravida iaculis. In fringilla odio in felis ultricies porttitor. Donec at purus libero. Vestibulum libero orci, commodo nec arcu sit amet, commodo sollicitudin est. Vestibulum ultricies malesuada tempor.</p>
-					</section><!--//section-->
-					
-					<section class="docs-section" id="item-8-3">
-							<h2 class="section-heading">Section Item 8.3</h2>
-						<p>Vivamus efficitur fringilla ullamcorper. Cras condimentum condimentum mauris, vitae facilisis leo. Aliquam sagittis purus nisi, at commodo augue convallis id. Sed interdum turpis quis felis bibendum imperdiet. Mauris pellentesque urna eu leo gravida iaculis. In fringilla odio in felis ultricies porttitor. Donec at purus libero. Vestibulum libero orci, commodo nec arcu sit amet, commodo sollicitudin est. Vestibulum ultricies malesuada tempor.</p>
-					</section><!--//section-->
-			    </article><!--//docs-article-->
 			    
 			    
 			    <article class="docs-article" id="section-9">
 				    <header class="docs-header">
 					    <h1 class="docs-heading">FAQs</h1>
 					    <section class="docs-intro">
-						    <p>Section intro goes here. You can list all your FAQs using the format below.</p>
+						    <p>Seção a qual você irá encontrar as perguntas mais frequentes que nossos usuários possuem, leia atentamente cada questionamento abaixo a sua dúvida poderá ser sanada com alguma resposta contida no conteúdo a seguir.</p>
 						</section><!--//docs-intro-->
 				    </header>
 				     <section class="docs-section" id="item-9-1">
-						<h2 class="section-heading">Section Item 9.1 <small>(FAQ Category One)</small></h2>
-						<h5 class="pt-3"><i class="fas fa-question-circle mr-1"></i>What's sit amet quam eget lacinia?</h5>
-						<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.</p>
-						<h5 class="pt-3"><i class="fas fa-question-circle mr-1"></i>How to ipsum dolor sit amet quam tortor?</h5>
-						<p>Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Nullam accumsan lorem in dui. </p>
-						<h5 class="pt-3"><i class="fas fa-question-circle mr-1"></i>Can I  bibendum sodales?</h5>
-						<p>Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Nullam accumsan lorem in dui. </p>
-						<h5 class="pt-3"><i class="fas fa-question-circle mr-1"></i>Where arcu sed urna gravida?</h5>
-						<p>Aenean et sodales nisi, vel efficitur sapien. Quisque molestie diam libero, et elementum diam mollis ac. In dignissim aliquam est eget ullamcorper. Sed id sodales tortor, eu finibus leo. Vivamus dapibus sollicitudin justo vel fermentum. Curabitur nec arcu sed urna gravida lobortis. Donec lectus est, imperdiet eu viverra viverra, ultricies nec urna. </p>
+						<h2 class="section-heading">Dúvida Frequentes</h2>
+						<h5 class="pt-3"><i class="fas fa-question-circle mr-1"></i>Eu preciso realizar alguma método de autenticação para acessar os endpoints da API REST?</h5>
+						<p>Não, a nossa API é totalmente aberta ao uso.</p>
+						<h5 class="pt-3"><i class="fas fa-question-circle mr-1"></i>Estou recebendo erros ao usar as APIs REST. O que eu faço?</h5>
+						<p>Se você esta recebendo um response com um erro, favor anote o código do erro e veja a descrição do mesmo em nossa tabela de erros descritos da API Clima Music, clique <b><a href="#section-5">AQUI</a></b> para acessar</p>
+						<h5 class="pt-3"><i class="fas fa-question-circle mr-1"></i>O que é uma API REST?</h5>
+						<p>API REST é uma interface que fornece dados em um formato padronizado baseado em requisições HTTP. </p>
+						<h5 class="pt-3"><i class="fas fa-question-circle mr-1"></i>Como começo a usar a API REST Clima Music?</h5>
+						<p>Como não é necessario autenticação em nossa API, basta você realizar a requisição adequada para cada endpoint de nossa API, passando os parâmetros necessários e você receberá um response como resposta.</p>
+						<h5 class="pt-3"><i class="fas fa-question-circle mr-1"></i>Para usar esta API eu preciso realizar algum pagamento ou cadastro?</h5>
+						<p>Não, nossa API é livre de qualquer custo e cadastro exigido ao usuário.</p>
 					</section><!--//section-->
-					
-					<section class="docs-section" id="item-9-2">
-						<h2 class="section-heading">Section Item 9.2 <small>(FAQ Category Two)</small></h2>
-						<h5 class="pt-3"><i class="fas fa-question-circle mr-1"></i>What's sit amet quam eget lacinia?</h5>
-						<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.</p>
-						<h5 class="pt-3"><i class="fas fa-question-circle mr-1"></i>How to ipsum dolor sit amet quam tortor?</h5>
-						<p>Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Nullam accumsan lorem in dui. </p>
-						<h5 class="pt-3"><i class="fas fa-question-circle mr-1"></i>Can I  bibendum sodales?</h5>
-						<p>Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Nullam accumsan lorem in dui. </p>
-						<h5 class="pt-3"><i class="fas fa-question-circle mr-1"></i>Where arcu sed urna gravida?</h5>
-						<p>Aenean et sodales nisi, vel efficitur sapien. Quisque molestie diam libero, et elementum diam mollis ac. In dignissim aliquam est eget ullamcorper. Sed id sodales tortor, eu finibus leo. Vivamus dapibus sollicitudin justo vel fermentum. Curabitur nec arcu sed urna gravida lobortis. Donec lectus est, imperdiet eu viverra viverra, ultricies nec urna. </p>
-					</section><!--//section-->
-					
-					<section class="docs-section" id="item-9-3">
-							<h2 class="section-heading">Section Item 9.3 <small>(FAQ Category Three)</small></h2>
-						    <h5 class="pt-3"><i class="fas fa-question-circle mr-1"></i>How to dapibus sollicitudin justo vel fermentum?</h5>
-							<p>Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Nullam accumsan lorem in dui. </p>
-							<h5 class="pt-3"><i class="fas fa-question-circle mr-1"></i>How long bibendum sodales?</h5>
-							<p>Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Nullam accumsan lorem in dui. </p>
-							<h5 class="pt-3"><i class="fas fa-question-circle mr-1"></i>Where dapibus sollicitudin?</h5>
-							<p>Aenean et sodales nisi, vel efficitur sapien. Quisque molestie diam libero, et elementum diam mollis ac. In dignissim aliquam est eget ullamcorper. Sed id sodales tortor, eu finibus leo. Vivamus dapibus sollicitudin justo vel fermentum. Curabitur nec arcu sed urna gravida lobortis. Donec lectus est, imperdiet eu viverra viverra, ultricies nec urna. </p>
-					</section><!--//section-->
-			    </article><!--//docs-article-->
 
 			    <footer class="footer">
 				    <div class="container text-center py-5">
-					    <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
 				        <small class="copyright">© 2020 Clima Music, Inc. <i class="fas fa-heart" style="color: #fb866a;"></i> by Abner Marques de Oliveira</small>
 				        <ul class="social-list list-unstyled pt-4 mb-0">
 							<li class="list-inline-item"><a href="https://github.com/AbMarx/ClimaMusic" target="new"><i class="fab fa-github fa-fw"></i></a></li> 

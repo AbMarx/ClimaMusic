@@ -22,19 +22,20 @@ class weatherConsultationsController extends Controller
     private $weather_key;
     private $weather_endpoint;
     private $city_metrics;
+    
     public function __construct()
     { 
-        $this->client_id = env("CLIENT_ID", null);
-        $this->client_secret = env("CLIENT_SECRET", null);
-        $this->spotify_token_url = env("SPOTIFY_TOKEN_URL", null);
-        $this->spotify_recommendations_url = env("SPOTIFY_RECOMMENDATION_URL", null);
-        $this->weather_key = env("WEATHER_KEY", null);
-        $this->weather_endpoint = env("WEATHER_ENDPOINT", null);
+        $this->client_id = env("CLIENT_ID", false);
+        $this->client_secret = env("CLIENT_SECRET", false);
+        $this->spotify_token_url = env("SPOTIFY_TOKEN_URL", false);
+        $this->spotify_recommendations_url = env("SPOTIFY_RECOMMENDATION_URL", false);
+        $this->weather_key = env("WEATHER_KEY", false);
+        $this->weather_endpoint = env("WEATHER_ENDPOINT", false);
         $this->token = $this->getSpotifyToken();
         $this->city_metrics = array();
         
         if(Cache::get('city_metrics')){
-            $this->city_metrics =  Cache::get('city_metrics',null);
+            $this->city_metrics =  Cache::get('city_metrics',false);
         }
         $this->weatherConsultations = new weatherConsultations();
     }
@@ -42,34 +43,45 @@ class weatherConsultationsController extends Controller
     public function getMusicSuggestion(Request $request){
         if(isset($request->city)){
             $this->city = rawurldecode($request->city);
-            
+
             if($this->getWeatherByCityName()){
-                if($this->getMusicByTemperature()){
-                    $this->setCityMetrics();
-                    return response()->json($this->musics, 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);                    
+                if(isset($this->token, $this->spotify_token_url,$this->spotify_recommendations_url) && $this->spotify_token_url && $this->spotify_recommendations_url){
+                    if($this->getMusicByTemperature()){
+                        $this->setCityMetrics();
+                        return response()->json(["status"=>200, "data"=>$this->musics], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);                    
+                    }
+                    else{
+                        return $this->makeErrorReturn("404","Response vazio ou nulo","Nenhuma música encontrada.");
+                    }
                 }
                 else{
-                    return $this->makeErrorReturn("2","Response vazio ou nulo","Nenhuma música encontrada.");
+                    return $this->makeErrorReturn("401","Erro na obtenção de dados externos","Erro ao obter dados necessários para integrar com a API do Spotify.");
                 }
             }            
         }
         else{
-            return $this->makeErrorReturn("1","Parâmetros requeridos não fornecidos","O parâmetro nome da cidade não fornecido.");
+            return $this->makeErrorReturn("400","Parâmetros requeridos não fornecidos","O parâmetro nome da cidade não fornecido.");
         }
     }
 
     public function makeErrorReturn($code,$message_status,$description){
-        if(isset($code,$message_status,$description)){
-            return  json_encode([
-                        "error_code"=>$code,
-                        "message_status"=>$message_status,
-                        "description"=>$description
-                    ]);
+        if(isset($code,$message_status,$description)){            
+            return response()->json([
+                                        "status"=>$code,
+                                        "message_status"=>$message_status,
+                                        "description"=>$description
+                                    ], $code,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);                    
         }
     }
 
     public function getWeatherByCityName(){
         if(isset($this->weather_key,$this->weather_endpoint,$this->city)){
+            $cached_city_temp = Cache::get($this->city);
+            if(isset($cached_city_temp) && $cached_city_temp){
+                $this->city_temp = Cache::get($this->city);
+                return true;
+            } 
+            
             $this->weather_endpoint = str_replace("{city}",$this->city,$this->weather_endpoint);
             $this->weather_endpoint = str_replace("{weather_key}",$this->weather_key,$this->weather_endpoint);
 
@@ -79,12 +91,18 @@ class weatherConsultationsController extends Controller
                 if(isset($curlData->main->temp)){
                     $this->city_temp = $curlData->main->temp;
 
+                    if(isset($this->city_temp)){
+                        if(!Cache::get($this->city)){
+                            Cache::put($this->city, $this->city_temp, 600);
+                        } 
+                    }
+
                     return true;
                 }
                 return false;
             }
             else{
-                return $this->makeErrorReturn("4","Erro na obtenção de dados externos","Erro ao adquirir a temperatura da cidade $this->city.");
+                return $this->makeErrorReturn("404","Erro na obtenção de dados externos","Erro ao adquirir a temperatura da cidade $this->city.");
             }
         }
     }
@@ -104,7 +122,7 @@ class weatherConsultationsController extends Controller
                 return true;
             } 
             else{
-                return $this->makeErrorReturn("4","Erro na obtenção de dados externos","Erro ao adquirir as músicas de acordo com a temperatura da cidade $this->city");
+                return $this->makeErrorReturn("400","Erro na obtenção de dados externos","Erro ao adquirir as músicas de acordo com a temperatura da cidade $this->city");
             }
         }
     }
@@ -133,47 +151,35 @@ class weatherConsultationsController extends Controller
     }
 
     public function getCityMetrics(){
-        return response()->json($this->city_metrics, 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);
+        return response()->json(["status"=>200, "data"=>$this->city_metrics], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);
     }
-
-    // public function storeWeatherConsultations(){
-    //     $this->weatherConsultations->city = urldecode($this->city);
-    //     $this->weatherConsultations->key_consultation = $this->client_id;
-    //     $this->weatherConsultations->city_temperature = $this->city_temp;
-    //     $this->weatherConsultations->music_genre = $this->music_genre;
-    //     $this->weatherConsultations->created_at = time();
-    //     $this->weatherConsultations->updated_at = time();
-
-    //     if($this->weatherConsultations->save()){
-    //         return true;
-    //     }
-
-    //     return false;
-    // }
     
     public function getSpotifyToken(){
         $client = new \GuzzleHttp\Client();
+        if(isset($this->client_id,$this->client_secret)){
+            try {
+                $request = $client->request('POST', $this->spotify_token_url, [
+                    'headers' => [
+                        'Content-Type' => 'application/x-www-form-urlencoded',
+                        'Accepts' => 'application/json',
+                        'Authorization' => 'Basic '.base64_encode($this->client_id.":".$this->client_secret),
+                    ],
+                    'form_params' => [
+                        'grant_type' => 'client_credentials',
+                    ],
+                ]);
+            } catch (\GuzzleHttp\Exception\ClientException $e) {
+                return false;
+            }
 
-        try {
-            $request = $client->request('POST', $this->spotify_token_url, [
-                'headers' => [
-                    'Content-Type' => 'application/x-www-form-urlencoded',
-                    'Accepts' => 'application/json',
-                    'Authorization' => 'Basic '.base64_encode($this->client_id.":".$this->client_secret),
-                ],
-                'form_params' => [
-                    'grant_type' => 'client_credentials',
-                ],
-            ]);
-        } catch (\GuzzleHttp\Exception\ClientException $e) {
-            throw new \Exception('Erro ao gerar token do Spotify');
+            $response = json_decode($request->getBody());
+
+            if($response && isset($response->access_token)){
+                return $response->access_token;
+            }
         }
-
-        $response = json_decode($request->getBody());
-
-        if($response && isset($response->access_token)){
-            return $response->access_token;
-        }
+        
+        return false;
     }
 
     public function getCurlResponse($endpoint, $authorization, $authorization_type){
@@ -215,50 +221,4 @@ class weatherConsultationsController extends Controller
             return false;
         }
     }
-
-    // public function getStatistics(){
-    //     if(Cache::has('statistics')) {
-    //         $statistics = Cache::store('file')->get('statistics');
-    //         return json_encode($statistics);
-    //     }
-
-    //     $totalConsultsByCity = $this->execDbSelect("SELECT DISTINCT wc.city, COUNT(wc.city) AS total_consultations FROM weather_consultations AS wc GROUP BY wc.city ORDER BY total_consultations DESC");
-    //     $mostHotestCity = $this->execDbSelect("SELECT city, MAX(wc.city_temperature) AS city_temperature FROM weather_consultations AS wc GROUP BY city ORDER BY city_temperature DESC LIMIT 1");
-    //     $mostColdestCity = $this->execDbSelect("SELECT city, MIN(wc.city_temperature) AS city_temperature FROM weather_consultations AS wc GROUP BY city ORDER BY city_temperature ASC LIMIT 1");
-    //     $musicGenresByCity = $this->execDbSelect("SELECT DISTINCT city, GROUP_CONCAT(DISTINCT music_genre) AS music_genres FROM `weather_consultations` GROUP BY city");
-
-    //     if($musicGenresByCity){
-    //         foreach($musicGenresByCity as $city){
-    //             $city->music_genres = explode(",",$city->music_genres);
-    //         }    
-            
-    //         $musicGenresByCity = $musicGenresByCity;
-    //     }
-
-    //     $totalMusicGenreByCity = $this->execDbSelect("SELECT city ,music_genre, COUNT(music_genre) AS total_music_genre FROM weather_consultations GROUP BY music_genre,city");
-    //     $totalMusicGenre = $this->execDbSelect("SELECT music_genre, COUNT(music_genre) AS total_music_genre FROM weather_consultations GROUP BY music_genre");
-
-    //     if(!Cache::has('statistics')) {
-    //         $statistics = [
-    //             "totalConsultsByCity"=>$totalConsultsByCity,
-    //             "mostHotestCity"=>$mostHotestCity,
-    //             "mostColdestCity"=>$mostColdestCity,
-    //             "musicGenresByCity"=>$musicGenresByCity,
-    //             "totalMusicGenreByCity"=>$totalMusicGenreByCity,
-    //             "totalMusicGenre"=>$totalMusicGenre
-    //         ];
-    //         Cache::put('statistics', $statistics, 600);
-    //         $statistics = Cache::store('file')->get('statistics');
-    //     }      
-    
-    //     return json_encode($statistics);
-    // }
-
-    public function execDbSelect($sql){
-        if(isset($sql)){
-            return $exec_query = DB::select($sql);
-        }
-
-        return false;
-    }    
 }
