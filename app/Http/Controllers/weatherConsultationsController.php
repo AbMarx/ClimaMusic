@@ -119,8 +119,6 @@ class weatherConsultationsController extends Controller
         elseif($this->city_temp < 10){
             $this->music_genre = "classic";
         }
-        echo $this->city_temp;
-        echo $this->music_genre;die;
     }
 
     public function setCityMetrics(){
