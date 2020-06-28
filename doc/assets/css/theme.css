@@ -32,7 +32,9 @@
     .response_width_code_example{
         width:150%;
     }
+}
 
+@media (max-width:320px) {
     .text-center{
         text-align: left!important;
     }
