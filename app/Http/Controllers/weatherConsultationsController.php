@@ -48,11 +48,11 @@ class weatherConsultationsController extends Controller
             //se a temperatura da cidade ja estiver no cache
             $cached_city_temp = Cache::get($this->city);
             if(isset($cached_city_temp) && $cached_city_temp){
-                $this->city_temp = $cached_city_temp;
+                $this->city_temp = $cached_city_temp;//temperatura da cidade
 
                 if(isset($this->token, $this->spotify_token_url,$this->spotify_recommendations_url) && $this->spotify_token_url && $this->spotify_recommendations_url){
-                    if($this->getMusicByTemperature()){
-                        $this->setCityMetrics();
+                    if($this->getMusicByTemperature()){//get temperatura da cidade
+                        $this->setCityMetrics();//set das metricas das cidades ja consultadas
                         return response()->json(["status"=>200, "data"=>$this->musics], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);                    
                     }
                     else{
@@ -64,10 +64,10 @@ class weatherConsultationsController extends Controller
                 }
             }
             else{
-                if($this->getWeatherByCityName()){
+                if($this->getWeatherByCityName()){//get da temperatura da cidade
                     if(isset($this->token, $this->spotify_token_url,$this->spotify_recommendations_url) && $this->spotify_token_url && $this->spotify_recommendations_url){
-                        if($this->getMusicByTemperature()){
-                            $this->setCityMetrics();
+                        if($this->getMusicByTemperature()){//get temperatura da cidade
+                            $this->setCityMetrics();//set das metricas das cidades ja consultadas
                             return response()->json(["status"=>200, "data"=>$this->musics], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);                    
                         }
                         else{
@@ -85,6 +85,7 @@ class weatherConsultationsController extends Controller
         }
     }
 
+    //retorna um erro ao solicitante
     public function makeErrorReturn($code,$message_status,$description){
         if(isset($code,$message_status,$description)){            
             return response()->json([
@@ -95,6 +96,7 @@ class weatherConsultationsController extends Controller
         }
     }
 
+    //retorna a temperatura de uma cidade
     public function getWeatherByCityName(){
         if(isset($this->weather_key,$this->weather_endpoint,$this->city)){           
             $this->weather_endpoint = str_replace("{city}",$this->city,$this->weather_endpoint);
@@ -122,6 +124,7 @@ class weatherConsultationsController extends Controller
         }
     }
 
+    //pega recomendações de musicas por genero especifico
     public function getMusicByTemperature(){
         if(isset($this->city_temp)){       
             $this->getMusicGenreByCityTemp();
@@ -142,6 +145,7 @@ class weatherConsultationsController extends Controller
         }
     }
 
+    //define o genero musical baseado na temperatura da cidade
     public function getMusicGenreByCityTemp(){
         if($this->city_temp > 25){
             $this->music_genre = "pop";
@@ -154,6 +158,7 @@ class weatherConsultationsController extends Controller
         }
     }
 
+    //guarda no cache as cidades consultadas
     public function setCityMetrics(){
         if(isset($this->city)){
             if(!in_array($this->city,$this->city_metrics)){
@@ -165,10 +170,12 @@ class weatherConsultationsController extends Controller
         return false;
     }
 
+    //retorna as metricas das cidades ja consultadas
     public function getCityMetrics(){
         return response()->json(["status"=>200, "data"=>$this->city_metrics], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);
     }
     
+    //gera o token de integração com o API do spotify
     public function getSpotifyToken(){
         $client = new \GuzzleHttp\Client();
         if(isset($this->client_id,$this->client_secret)){
@@ -197,6 +204,7 @@ class weatherConsultationsController extends Controller
         return false;
     }
 
+    //realiza chamada curl em um endpoint especifico
     public function getCurlResponse($endpoint, $authorization, $authorization_type){
         if(isset($endpoint)){
             if(isset($authorization) && $authorization){

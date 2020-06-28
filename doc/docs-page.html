@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <meta name="description" content="Clima Musica a melhor API REST de sugestões musicais baseadas em clima de cidade !!">
+    <meta name="description" content="Clima Music a melhor API REST de sugestões musicais baseadas em clima de cidade !!">
     <meta name="author" content="Abner Marques de Oliveira">    
     <link rel="shortcut icon" href="assets/images/favicon.ico"> 
     
@@ -80,7 +80,7 @@
 					    <h1 class="docs-heading">Introdução a API Clima Music <span class="docs-time"></span></h1>
 					    <section class="docs-intro">
 						    <p>
-								O objetivo desta documentação é orientar o desenvolvedor sobre como integrar com o API do Clima Music, API que irá disponibilizar músicas de acordo com a temperatura de uma cidade e gerador de métricas das requisições, descrevendo os serviços disponíveis com exemplos de requisição e respostas.<br/><br/>
+								O objetivo desta documentação é orientar o desenvolvedor sobre como integrar com a API do Clima Music, API que irá disponibilizar músicas de acordo com a temperatura de uma cidade e gerador de métricas das requisições, descrevendo os serviços disponíveis com exemplos de requisição e respostas.<br/><br/>
 
 								Todas as operações requerem credenciais de acesso (Client ID e Client Secret) específicos para respectivos para comunicação com a API Spotify e key para a API externa OpenWeatherMaps, mas não se preocupe, essas credenciais são mantidas e manipuladas do nosso lado.<br/><br/>
 
@@ -106,7 +106,7 @@
 				    <header class="docs-header">
 					    <h1 class="docs-heading">APIs</h1>
 					    <section class="docs-intro">
-							<p>Nesta secão você irá encontra todos os endpoints disponíveis na API Clima Music e suas respectivas descrições.</p>
+							<p>Nesta secão você irá encontrar todos os endpoints disponíveis na API Clima Music e suas respectivas descrições.</p>
 							<p>Nós também disponibilizamos uma collection do Postman que você poderá baixar e utilizar em seus testes.</p>
 
 							
@@ -117,7 +117,7 @@
 					<article class="docs-article" id="item-3-1">
 						<header class="docs-header">
 							<h2 class="section-heading">GET api/weather/{city}</h2>
-						<p>Este endpoint irá disponibilizar músicas cujo o gênero irá variar de acordo com a temperatura da cidade. <br/>A cada requisição será retornado um response aleatório de musicas do mesmo gênero</p>
+						<p>Este endpoint irá disponibilizar músicas cujo gênero irá variar de acordo com a temperatura da cidade. <br/>A cada requisição será retornado um response aleatório de músicas do mesmo gênero.</p>
 						<p><b>Parâmetros:</b> city - Nome da cidade (obrigatório) </p><br/>
 						
 						<b>Exemplos de request:</b><br/><br/>
@@ -226,7 +226,7 @@ print_r(json_decode((string) $body));
 		                            </span><!--//icon-holder-->
 	                                Aviso
 	                            </h4>
-                                <p>O response será no padrão JSON independete da linguagem utilizada para realizar a comunicação com a API Musica Clima.</p>
+                                <p>O response será no padrão JSON independente da linguagem utilizada para realizar a comunicação com a API Clima Music.</p>
                             </div><!--//content-->
                         </div>
 
@@ -245,7 +245,7 @@ print_r(json_decode((string) $body));
 import requests
 import json
 
-url = 'http://climamusic.kinghost.net/statistics'
+url = 'http://climamusic.kinghost.net/api/weather/campinas'
 headers = {
 	'Content-Type': 'application/json',
 	'Accept': 'application/json'
@@ -259,7 +259,7 @@ response.json()
 						<pre>
 							<div class="CodeBlock-pre language-json code_example large_width_code_example">
 curl -X GET \
-	-G "http://climamusic.kinghost.net/statistics" \
+	-G "http://climamusic.kinghost.net/api/weather/campinas" \
 	-H "Content-Type: application/json" \
 	-H "Accept: application/json"
 							</div>
@@ -270,7 +270,7 @@ curl -X GET \
 						<pre>
 							<div class="CodeBlock-pre language-json code_example min_width_code_example">
 const url = new URL(
-	"http://climamusic.kinghost.net/statistics"
+	"http://climamusic.kinghost.net/api/weather/campinas"
 );
 
 let headers = {
@@ -328,7 +328,7 @@ print_r(json_decode((string) $body));
 		                            </span><!--//icon-holder-->
 	                                Aviso
 	                            </h4>
-                                <p>O response será no padrão JSON independete da linguagem utilizada para realizar a comunicação com a API Musica Clima.</p>
+                                <p>O response será no padrão JSON independente da linguagem utilizada para realizar a comunicação com a API Clima Music.</p>
                             </div><!--//content-->
                         </div>
 					</article><!--//docs-article-->
@@ -360,7 +360,7 @@ print_r(json_decode((string) $body));
 				    <header class="docs-header">
 					    <h1 class="docs-heading">Erros</h1>
 					    <section class="docs-intro">
-						    <p>Entenda quais as excessões / erros que nossa API pode retornar a quem está consumindo os serviços.<br/>Segue abaixo os códigos dos erros assim como suas descrições</p>
+						    <p>Entenda quais as exceções / erros que nossa API pode retornar a quem está consumindo os serviços.<br/>Segue abaixo os códigos dos erros assim como suas descrições</p>
 						</section><!--//docs-intro-->
 				    </header>
 				     <section class="docs-section" id="item-5-1">
