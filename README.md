@@ -15,4 +15,4 @@ Instalação
 
 O nosso serviço é disponibilizado via API REST a qual não necessita de nenhuma instalação, basta você consumir os dados disponibilizados em nossos endpoints desta documentação.
 
-Acesse <b><a href="http://documentation.climamusic.kinghost.net" target="new">http://documentation.climamusic.kinghost.net</a></b> para visualizar a documentação completa.
+Acesse <b><a href="http://documentation.climamusic.kinghost.net" target="_blank">http://documentation.climamusic.kinghost.net</a></b> para visualizar a documentação completa.
