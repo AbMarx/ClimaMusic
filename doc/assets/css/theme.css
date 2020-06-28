@@ -17,4 +17,23 @@
     color: #FFF;
     border-radius: 10px;
     padding: 20px;
+    font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+}
+
+@media (min-width:320px) {
+    .large_width_code_example{
+        width:300%;
+    }
+
+    .min_width_code_example{
+        width:300%;
+    }
+
+    .response_width_code_example{
+        width:150%;
+    }
+
+    .text-center{
+        text-align: left!important;
+    }
 }

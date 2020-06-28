@@ -42,9 +42,14 @@ class weatherConsultationsController extends Controller
 
     public function getMusicSuggestion(Request $request){
         if(isset($request->city)){
+            //nome da cidade
             $this->city = rawurldecode($request->city);
 
-            if($this->getWeatherByCityName()){
+            //se a temperatura da cidade ja estiver no cache
+            $cached_city_temp = Cache::get($this->city);
+            if(isset($cached_city_temp) && $cached_city_temp){
+                $this->city_temp = $cached_city_temp;
+
                 if(isset($this->token, $this->spotify_token_url,$this->spotify_recommendations_url) && $this->spotify_token_url && $this->spotify_recommendations_url){
                     if($this->getMusicByTemperature()){
                         $this->setCityMetrics();
@@ -57,7 +62,23 @@ class weatherConsultationsController extends Controller
                 else{
                     return $this->makeErrorReturn("401","Erro na obtenção de dados externos","Erro ao obter dados necessários para integrar com a API do Spotify.");
                 }
-            }            
+            }
+            else{
+                if($this->getWeatherByCityName()){
+                    if(isset($this->token, $this->spotify_token_url,$this->spotify_recommendations_url) && $this->spotify_token_url && $this->spotify_recommendations_url){
+                        if($this->getMusicByTemperature()){
+                            $this->setCityMetrics();
+                            return response()->json(["status"=>200, "data"=>$this->musics], 200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);                    
+                        }
+                        else{
+                            return $this->makeErrorReturn("404","Response vazio ou nulo","Nenhuma música encontrada.");
+                        }
+                    }
+                    else{
+                        return $this->makeErrorReturn("401","Erro na obtenção de dados externos","Erro ao obter dados necessários para integrar com a API do Spotify.");
+                    }
+                }     
+            }                   
         }
         else{
             return $this->makeErrorReturn("400","Parâmetros requeridos não fornecidos","O parâmetro nome da cidade não fornecido.");
@@ -75,13 +96,7 @@ class weatherConsultationsController extends Controller
     }
 
     public function getWeatherByCityName(){
-        if(isset($this->weather_key,$this->weather_endpoint,$this->city)){
-            $cached_city_temp = Cache::get($this->city);
-            if(isset($cached_city_temp) && $cached_city_temp){
-                $this->city_temp = Cache::get($this->city);
-                return true;
-            } 
-            
+        if(isset($this->weather_key,$this->weather_endpoint,$this->city)){           
             $this->weather_endpoint = str_replace("{city}",$this->city,$this->weather_endpoint);
             $this->weather_endpoint = str_replace("{weather_key}",$this->weather_key,$this->weather_endpoint);
 

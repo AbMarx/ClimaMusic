@@ -221,7 +221,7 @@
 
 						<b>PYTHON</b>
 						<pre>
-							<div class="CodeBlock-pre language-json code_example">
+							<div class="CodeBlock-pre language-json code_example min_width_code_example">
 import requests
 import json
 
@@ -237,7 +237,7 @@ response.json()
 <hr>
 						<b>BASH</b>
 						<pre>
-							<div class="CodeBlock-pre language-json code_example">
+							<div class="CodeBlock-pre language-json code_example large_width_code_example">
 curl -X GET \
 	-G "http://climamusic.kinghost.net/api/weather/campinas" \
 	-H "Content-Type: application/json" \
@@ -248,7 +248,7 @@ curl -X GET \
 
 						<b>JAVASCRIPT</b>
 						<pre>
-							<div class="CodeBlock-pre language-json code_example">
+							<div class="CodeBlock-pre language-json code_example min_width_code_example">
 const url = new URL(
     "http://climamusic.kinghost.net/api/weather/campinas"
 );
@@ -269,7 +269,7 @@ fetch(url, {
 <hr>
 						<b>PHP</b>
 						<pre>
-							<div class="CodeBlock-pre language-json code_example">
+							<div class="CodeBlock-pre language-json code_example min_width_code_example">
 $client = new \GuzzleHttp\Client();
 $response = $client->get(
 	'http://climamusic.kinghost.net/api/weather/campinas',
@@ -287,30 +287,32 @@ print_r(json_decode((string) $body));
 
 						<b>Exemplo de response: 200</b><br/><br/>
 
-						<div class="CodeBlock-pre language-json code_example">
+						<pre>
+							<div class="CodeBlock-pre language-json code_example min_width_code_example">
 [<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Seventeen",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"The Zephyr Song",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Animals",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Habits (Stay High) - Hippie Sabotage Remix",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Love Me Again",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Safe",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Nico and the Niners",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Still Counting",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"these are my friends",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Boys",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Happy?",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Kiss and Make Up",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Fetish (feat. Gucci Mane)",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Young God",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Fly Like An Eagle",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Team",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Glad He's Gone",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"American Girl",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Nightmare",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Girls (feat. Cardi B, Bebe Rexha & Charli XCX)"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Seventeen",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"The Zephyr Song",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Animals",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Habits (Stay High) - Hippie Sabotage Remix",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Love Me Again",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Safe",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Nico and the Niners",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Still Counting",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"these are my friends",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Boys",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Happy?",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Kiss and Make Up",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Fetish (feat. Gucci Mane)",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Young God",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Fly Like An Eagle",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Team",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Glad He's Gone",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"American Girl",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Nightmare",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Girls (feat. Cardi B, Bebe Rexha & Charli XCX)"
 ]
-						</div>
+							</div>
+						</pre>
 						</header>
 						<div class="callout-block callout-block-warning">
                             <div class="content">
@@ -335,7 +337,7 @@ print_r(json_decode((string) $body));
 
 						<b>PYTHON</b>
 						<pre>
-							<div class="CodeBlock-pre language-json code_example">
+							<div class="CodeBlock-pre language-json code_example min_width_code_example">
 import requests
 import json
 
@@ -351,7 +353,7 @@ response.json()
 <hr>
 						<b>BASH</b>
 						<pre>
-							<div class="CodeBlock-pre language-json code_example">
+							<div class="CodeBlock-pre language-json code_example large_width_code_example">
 curl -X GET \
 	-G "http://climamusic.kinghost.net/statistics" \
 	-H "Content-Type: application/json" \
@@ -362,7 +364,7 @@ curl -X GET \
 
 						<b>JAVASCRIPT</b>
 						<pre>
-							<div class="CodeBlock-pre language-json code_example">
+							<div class="CodeBlock-pre language-json code_example min_width_code_example">
 const url = new URL(
 	"http://climamusic.kinghost.net/statistics"
 );
@@ -383,7 +385,7 @@ fetch(url, {
 <hr>
 						<b>PHP</b>
 						<pre>
-							<div class="CodeBlock-pre language-json code_example">
+							<div class="CodeBlock-pre language-json code_example min_width_code_example">
 $client = new \GuzzleHttp\Client();
 $response = $client->get(
 	'http://climamusic.kinghost.net/api/weather/campinas',
@@ -400,16 +402,18 @@ print_r(json_decode((string) $body));
 						</pre>
 
 						<b>Exemplo de response: 200</b><br/><br/>
-
-						<div class="CodeBlock-pre language-json code_example">
+<pre>
+	<div class="CodeBlock-pre language-json code_example response_width_code_example">
 [<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"campinas",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"São Paulo",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Porto Alegre",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Duque de Caxias",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Belém",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"São Leopoldo"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"campinas",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"São Paulo",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Porto Alegre",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Duque de Caxias",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Belém",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"São Leopoldo"
 ]
+	</div>
+</pre>
 						</section><!--//section-->
 
 						<div class="callout-block callout-block-warning">
