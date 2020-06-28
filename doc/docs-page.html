@@ -43,112 +43,11 @@
 	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
 	                <div class="top-search-box d-none d-lg-flex">
 	                </div>
-	
-					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
-						<li class="list-inline-item"><a href="https://github.com/AbMarx/ClimaMusic" target="new"><i class="fab fa-github fa-fw"></i></a></li> 
-			            <li class="list-inline-item"><a href="#"><i class="fab fa-twitter fa-fw"></i></a></li>
-		                <li class="list-inline-item"><a href="#"><i class="fab fa-slack fa-fw"></i></a></li>
-		                <li class="list-inline-item"><a href="#"><i class="fab fa-product-hunt fa-fw"></i></a></li>
-					</ul><!--//social-list-->
-		            <a href="" class="btn btn-primary d-none d-lg-flex " data-toggle="modal" data-target="#contactModal">Fale Conosco</a>
+		            <a href="https://github.com/AbMarx/ClimaMusic" class="btn btn-primary d-none d-lg-flex " target="new" title="Acesse nosso repositório GitHub">Acesse nosso GitHub &nbsp;<i class="fab fa-github fa-fw" style="margin-top:3px;"></i></a>
 	            </div><!--//docs-top-utilities-->
             </div><!--//container-->
         </div><!--//branding-->
 	</header><!--//header-->
-	
-	<!-- Modal -->
-	<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-			</div>
-			<div class="modal-body">
-				<!--Section: Contact v.2-->
-				<section class="mb-4">
-
-					<!--Section heading-->
-					<h2 class="h1-responsive font-weight-bold text-center my-4">Fale Conosco</h2>
-					<!--Section description-->
-					<p class="text-center w-responsive mx-auto mb-5">Você tem alguma pergunta? Por favor, não hesite em nos contatar diretamente. Nossa equipe entrará em contato com você em questão de horas para ajudá-lo.</p>
-
-					<div class="row">
-
-						<!--Grid column-->
-						<div class="col-md-12 mb-md-0 mb-5">
-							<form id="contact-form" name="contact-form" action="mail.php" method="POST">
-
-								<!--Grid row-->
-								<div class="row">
-
-									<!--Grid column-->
-									<div class="col-md-6">
-										<div class="md-form mb-0">
-											<label for="name" class="">Seu nome</label>
-											<input type="text" id="name" name="name" class="form-control">
-										</div>
-									</div>
-									<!--Grid column-->
-
-									<!--Grid column-->
-									<div class="col-md-6">
-										<div class="md-form mb-0">
-											<label for="email" class="">Seu e-mail</label>
-											<input type="text" id="email" name="email" class="form-control">
-										</div>
-									</div>
-									<!--Grid column-->
-
-								</div>
-								<!--Grid row-->
-
-								<!--Grid row-->
-								<div class="row">
-									<div class="col-md-12">
-										<div class="md-form mb-0">
-											<label for="subject" class="">Assunto</label>
-											<input type="text" id="subject" name="subject" class="form-control">
-										</div>
-									</div>
-								</div>
-								<!--Grid row-->
-
-								<!--Grid row-->
-								<div class="row">
-
-									<!--Grid column-->
-									<div class="col-md-12">
-
-										<div class="md-form">
-											<label for="message">Sua mensagem</label>
-											<textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
-										</div>
-
-									</div>
-								</div>
-								<!--Grid row-->
-
-							</form>
-
-							<div class="text-center text-md-left">
-								<br/><br/><a class="btn btn-primary" style="color:#FFF;">Enviar</a>
-							</div>
-							<div class="status"></div>
-						</div>
-						<!--Grid column-->
-
-						
-
-					</div>
-
-				</section>
-			</div>
-			
-		</div>
-		</div>
-	</div>
     
     <div class="docs-wrapper">
 	    <div id="docs-sidebar" class="docs-sidebar">
@@ -207,7 +106,12 @@
 				    <header class="docs-header">
 					    <h1 class="docs-heading">APIs</h1>
 					    <section class="docs-intro">
-						    <p>Nesta secão você irá encontra todos os endpoints disponíveis na API Clima Music e suas respectivas descrições.</p>
+							<p>Nesta secão você irá encontra todos os endpoints disponíveis na API Clima Music e suas respectivas descrições.</p>
+							<p>Nós também disponibilizamos uma collection do Postman que você poderá baixar e utilizar em seus testes.</p>
+
+							
+							<a href="http://www.climamusic.kinghost.net/downloads/Clima Music.postman_collection.json" style="width:150px" class="btn btn-primary d-none d-lg-flex " target="new" title="Realizar download" download>Download &nbsp;<i class="fas fa-download fa-fw" style="margin-top:3px;"></i></a>
+
 						</section><!--//docs-intro-->
 					</header>
 					<article class="docs-article" id="item-3-1">
@@ -225,7 +129,7 @@
 import requests
 import json
 
-url = 'http://climamusic.kinghost.net/weather/1'
+url = 'http://climamusic.kinghost.net/api/weather/campinas'
 headers = {
 	'Content-Type': 'application/json',
 	'Accept': 'application/json'
@@ -519,12 +423,7 @@ print_r(json_decode((string) $body));
 				<div class="container text-center py-5">
 					<small class="copyright">© 2020 Clima Music, Inc. <i class="fas fa-heart" style="color: #fb866a;"></i> by Abner Marques de Oliveira</small>
 					<ul class="social-list list-unstyled pt-4 mb-0">
-						<li class="list-inline-item"><a href="https://github.com/AbMarx/ClimaMusic" target="new"><i class="fab fa-github fa-fw"></i></a></li> 
-						<li class="list-inline-item"><a href="#"><i class="fab fa-twitter fa-fw"></i></a></li>
-						<li class="list-inline-item"><a href="#"><i class="fab fa-slack fa-fw"></i></a></li>
-						<li class="list-inline-item"><a href="#"><i class="fab fa-product-hunt fa-fw"></i></a></li>
-						<li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f fa-fw"></i></a></li>
-						<li class="list-inline-item"><a href="#"><i class="fab fa-instagram fa-fw"></i></a></li>
+						<li class="list-inline-item"><a href="https://github.com/AbMarx/ClimaMusic" title="Acesse o nosso repositório GitHub" target="new"><i class="fab fa-github fa-fw"></i></a></li> 
 					</ul><!--//social-list-->
 				</div>
 			</footer>
