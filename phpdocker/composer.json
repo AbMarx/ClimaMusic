@@ -1,0 +1,6 @@
+{
+    "require": {
+        "predis/predis": "^1.1",
+        "illuminate/redis": "^7.17"
+    }
+}
