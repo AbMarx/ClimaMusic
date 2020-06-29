@@ -11,5 +11,8 @@
 |
 */
 
+$router->get('/', function(){
+    return redirect("http://climamusic.kinghost.net/");
+});
 $router->get('api/weather/{city}', 'weatherConsultationsController@getMusicSuggestion');
 $router->get('api/statistics', 'weatherConsultationsController@getCityMetrics');
